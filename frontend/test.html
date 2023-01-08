@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <textarea id="input-text"></textarea>
+    <button class="translate-button" onclick="translateText()">Translate</button>
+    <div id="output-text"></div>
+    <script>
+      function translateText() {
+        
+        var requestBody = [{
+          "Text": document.getElementById("input-text").value
+        }];
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("mode", "no-cors");
+        // myHeaders.append("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
+        // myHeaders.append("Access-Control-Allow-Origin", "http://translator.westeurope.cloudapp.azure.com:80/translator");
+
+        var raw = JSON.stringify({
+          "text": "hello world!"
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("http://104.45.20.250:80/translator", requestOptions)
+          .then(response => response.text())
+          .then(result => console.log(result))
+          .catch(error => console.log('error', error));
+        
+      }
+    </script>
+  </body>
+</html>
