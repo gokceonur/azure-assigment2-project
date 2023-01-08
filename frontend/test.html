@@ -16,6 +16,7 @@
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Origin", "*");
+        myHeaders.append("Access-Control-Allow-Origin", "*");
 
         var raw = JSON.stringify({
           "text": "hello world!"
