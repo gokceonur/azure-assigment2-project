@@ -8,9 +8,9 @@
     <div id="output-text"></div>
     <script>
       function translateText() {
-        
+        const inputText = document.getElementById("input-text").value;
         var requestBody = [{
-          "Text": document.getElementById("input-text").value
+          "text": inputText
         }];
 
         var myHeaders = new Headers();
@@ -19,7 +19,7 @@
         myHeaders.append("Access-Control-Allow-Origin", "Origin, X-Requested-With, Content-Type, Accept");
 
         var raw = JSON.stringify({
-          "text": "hello world!"
+          "text": inputText
         });
 
         var requestOptions = {
@@ -31,7 +31,11 @@
 
         fetch("http://translator.westeurope.cloudapp.azure.com:80/translator/", requestOptions)
           .then(response => response.text())
-          .then(result => console.log(result))
+          .then((result) => {
+            const json = JSON.parse(result)
+            console.log(result)
+            document.getElementById("output-text").innerHTML = json.translation
+          })
           .catch(error => console.log('error', error));
         
       }
