@@ -15,6 +15,7 @@ app.get('/translator', jsonParser, async (req, res) => {
     console.log(body)
     const translation = await translator.translator(body.text)
     console.log('translation: ', translation)
+    res.append('Access-Control-Allow-Origin', ['*'])
     res.json({translation: translation})
 })
 
