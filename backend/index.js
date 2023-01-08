@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/translator', jsonParser, async (req, res) => {
+app.post('/translator', jsonParser, async (req, res) => {
     let body = req.body
     console.log(body)
     const translation = await translator.translator(body.text)
