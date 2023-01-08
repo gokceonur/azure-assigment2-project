@@ -15,7 +15,8 @@ app.post('/translator', jsonParser, async (req, res) => {
     console.log(body)
     const translation = await translator.translator(body.text)
     console.log('translation: ', translation)
-    res.append('Access-Control-Allow-Origin', ["translator.westeurope.cloudapp.azure.com", "localhost:3000", "file:///Users/gokceonur/Documents/_school/azure/project/frontend/test.html", "*"])
+    res.append('Access-Control-Allow-Origin', ['*'])
+    res.append('Access-Control-Allow-Methods', ['*'])
     res.json({translation: translation})
 })
 
