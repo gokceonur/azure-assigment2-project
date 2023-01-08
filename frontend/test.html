@@ -15,8 +15,7 @@
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        // myHeaders.append("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
-        // myHeaders.append("Access-Control-Allow-Origin", "http://translator.westeurope.cloudapp.azure.com:80/translator");
+        myHeaders.append("Origin", "*");
 
         var raw = JSON.stringify({
           "text": "hello world!"
@@ -29,7 +28,7 @@
           redirect: 'follow'
         };
 
-        fetch("http://104.45.20.250:80/translator", requestOptions)
+        fetch("http://translator.westeurope.cloudapp.azure.com:80/translator/", requestOptions)
           .then(response => response.text())
           .then(result => console.log(result))
           .catch(error => console.log('error', error));
