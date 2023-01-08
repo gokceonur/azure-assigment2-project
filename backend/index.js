@@ -15,8 +15,8 @@ app.post('/translator', jsonParser, async (req, res) => {
     console.log(body)
     const translation = await translator.translator(body.text)
     console.log('translation: ', translation)
-    res.append('Access-Control-Allow-Origin', ['*'])
-    res.append('Access-Control-Allow-Methods', ['*'])
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.json({translation: translation})
 })
 
