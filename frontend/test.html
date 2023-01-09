@@ -1,44 +1,41 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style (1).css">
+    <script src="index.js">
+    </script>
   </head>
   <body>
-    <textarea id="input-text"></textarea>
-    <button class="translate-button" onclick="translateText()">Translate</button>
-    <div id="output-text"></div>
-    <script>
-      function translateText() {
-        const inputText = document.getElementById("input-text").value;
-        var requestBody = [{
-          "text": inputText
-        }];
+    <center>
+    <div id="myDIV" class="header">
+      <img  src="https://connectoricons-prod.azureedge.net/releases/v1.0.1481/1.0.1481.2460/translatorv2/icon.png"  alt="" width="40" height="40"  /> 
+      <h1 style="margin:0px">Azure Translator</h1>
+    </div>
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Access-Control-Allow-Origin", "*");
-        myHeaders.append("Access-Control-Allow-Origin", "Origin, X-Requested-With, Content-Type, Accept");
+    <div class="inputdiv">
+    <textarea id="input-text" rows="5" cols="33" 
+    placeholder="Please write a text...(maximum length of 400 characters" maxlength='400'
+    style="width: 300px;height: 100px;
+    padding: 10px; border:3px dashed #418dd4;
+    background-color:aliceblue;"></textarea>
+    <button class="translate-button" onclick="translateText()"><b>Translate</b></button>
+    </div>
+    
+    <div id="outputdiv">
+    <h3>Translation:</h3>
+     <div id="output-text">
+     </div>
+    </div>
+   </center>
+    
+  
+    <div id="history">
+    </div>
+    <center>
+      <div id="footer">
+      <h3 style="color:rgb(241, 241, 241);">Azure Fundamentals Project-2 Prepared By</h3>
+      <a style="color:rgb(241, 241, 241);">Onur Gökçe, Ozan Doğan,Aliye Karaca, Emre Daver,İbrahim Tunç Şafak</a>
+      </div>
+    </center>
 
-        var raw = JSON.stringify({
-          "text": inputText
-        });
-
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow'
-        };
-
-        fetch("http://translator.westeurope.cloudapp.azure.com:80/translator/", requestOptions)
-          .then(response => response.text())
-          .then((result) => {
-            const json = JSON.parse(result)
-            console.log(result)
-            document.getElementById("output-text").innerHTML = json.translation
-          })
-          .catch(error => console.log('error', error));
-        
-      }
-    </script>
   </body>
 </html>

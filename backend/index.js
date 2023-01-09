@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 const translator = require('./translator')
+const db = require('./databaseFunctions')
 var bodyParser = require('body-parser')
 
 var jsonParser = bodyParser.json()
@@ -21,7 +22,16 @@ app.post('/translator', jsonParser, async (req, res) => {
     console.log(body)
     const translation = await translator.translator(body.text)
     console.log('translation: ', translation)
+    await db.writeData(body.text, translation)
     res.json({translation: translation})
+})
+
+app.get('/history', async (req, res) => {
+    db.readData((result)=>{
+        res.json({
+            history: result
+        })
+    })
 })
 
 app.listen(port, () => {
