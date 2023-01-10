@@ -3,23 +3,6 @@ const app = express()
 const port = 3000
 const translator = require('./translator')
 const db = require('./databaseFunctions')
-const fs = require('fs');
-
-var https = require('https');
-var privateKey  = fs.readFileSync('./certificates/key.pem', 'utf8');
-var certificate = fs.readFileSync('./certificates/cert.pem', 'utf8');
-
-var credentials = {
-    key: privateKey, 
-    cert: certificate
-};
-
-var server = https.createServer(credentials, app);
-
-server.listen(port, () => {
-    console.log("server starting on port : " + port)
-});
-
 var bodyParser = require('body-parser')
 
 var jsonParser = bodyParser.json()
@@ -51,6 +34,6 @@ app.get('/history', async (req, res) => {
     })
 })
 
-// app.listen(port, () => {
-//   console.log(`Example app listening on port ${port}`)
-// })
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
