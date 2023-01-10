@@ -6,7 +6,7 @@ const db = require('./databaseFunctions')
 const fs = require('fs');
 
 var https = require('https');
-var privateKey  = fs.readFileSync('/etc/certificate/private.key.key', 'utf8');
+var privateKey  = fs.readFileSync('/etc/certificate/private.key', 'utf8');
 var certificate = fs.readFileSync('/etc/certificate/certificate.crt', 'utf8');
 
 var credentials = {
