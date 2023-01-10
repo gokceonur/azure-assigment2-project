@@ -20,7 +20,7 @@ const translateText = () => {
       redirect: 'follow'
     };
 
-    fetch("http://translator.westeurope.cloudapp.azure.com:80/translator/", requestOptions)
+    fetch("https://translator.westeurope.cloudapp.azure.com:443/translator/", requestOptions)
       .then(response => response.text())
       .then((result) => {
         const json = JSON.parse(result)
@@ -49,7 +49,7 @@ const getHistory = () => {
     redirect: 'follow'
   };
 
-  fetch("http://translator.westeurope.cloudapp.azure.com:80/history/", requestOptions)
+  fetch("https://translator.westeurope.cloudapp.azure.com:443/history/", requestOptions)
     .then(response => response.text())
     .then((result) => {
       const json = JSON.parse(result)
